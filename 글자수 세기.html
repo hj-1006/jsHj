@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/upanddown.css">
+    <style>
+        #wrapper {
+        position:relative;
+        width:300px;
+        height:300px;
+        margin:0 auto;
+        text-align:center;
+        border:10px solid #777;
+        border-radius:5px;
+        outline:2px dotted #fff;
+        outline-offset:-6px;        
+      }
+
+      form {
+        margin-top:10px;
+      }
+
+      input[type="text"] {
+        width:250px;
+        height:60px;
+        padding:0;
+        border:#ccc 1px solid;
+      }
+    
+      .lengthnum {
+        background-color:azure;  
+      }
+
+      #display {
+        position:absolute;
+        left:0;     
+        bottom:0;
+        width:100%;
+        height:30px;
+      }
+
+      .view {
+        background-color:#222;
+				color:white;
+				line-height:30px;
+      }
+
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>
+            <span>글자수 세기</span>
+        </h1>
+        <form>
+			<label><input type="text" id="txt"></label>
+        </form>
+        <form>
+			<br> 공백 포함<input type="checkbox" value="공백" id="check" class="checkbox">
+            <br>
+			<input type="button" value="글자수 세기" id="length" class="lengthnum">
+		</form>
+		<div id="display" class="view"></div>
+        
+    </div>
+    <script>
+        let cntBtn = document.querySelector(".lengthnum"); // 글자수 버튼
+        let dis = document.querySelector(".view"); // 글자수
+
+        // 글자수 카운트 버튼을 누를시
+        cntBtn.addEventListener("click",function(){
+        // 체크박스 
+        const isCheck = document.getElementById("check").checked; 
+        let txt = document.querySelector("#txt").value; // 텍스트
+            if(!isCheck){
+                dis.innerText = txt.split(' ').join('').length + "개" + "(공백 제외)";
+                console.log(txt.split(' ').join('').length);
+            }else{
+                dis.innerText = txt.length + "개" + "(공백 포함)";
+                console.log(txt.length)
+            }
+            console.log(isCheck);
+        });
+    </script>
+</body>
+</html>

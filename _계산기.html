@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #txt {
+            width: 115px;
+            background-color: darkgrey;
+            line-height: 25px;
+            height: 25px;
+        }
+        #tools{
+            width: 115px;
+            background-color: lightgrey;
+            line-height: 1.5;
+            height: 150px;   
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="tools">
+        <p id="txt" style="text-align:  right">0</p>
+        <div>
+            <input type="button" value="1" class="num">
+            <input type="button" value="2" class="num">
+            <input type="button" value="3" class="num">
+            <input type="button" value="+" class="sign">
+            <br>
+        </div>
+        <div>
+            <input type="button" value="4" class="num">
+            <input type="button" value="5" class="num">
+            <input type="button" value="6" class="num">
+            <input type="button" value="-" class="sign">
+            <br>
+        </div>
+        <div>
+            <input type="button" value="7" class="num">
+            <input type="button" value="8" class="num">
+            <input type="button" value="9" class="num">
+            <input type="button" value="*" class="sign">
+            <br>
+        </div>
+        <div>
+            <input type="button" value="re">
+            <input type="button" value="0" class="num">
+            <input type="button" value="=" class="result">
+            <input type="button" value="/" class="sign">
+        </div>
+    </div>
+    <script>
+        let text = document.querySelector("#txt");
+        let numButton = document.querySelectorAll(".num");
+        let sing = document.querySelectorAll(".sign"); 
+        let math = ["", "", ""];
+        let answer = 0;
+        let isRun = false; // 숫자 순서지정
+        
+        // // 숫자 버튼 활성화(for문)
+        // for (let i = 0;i<numButton.length;i++){
+        //     numButton[i].addEventListener("click",function(){
+        //         if(!isRun){
+        //         math[0] += numButton[i].value;
+        //         text.innerText = math[0];
+        //     }else{
+        //         math[2] += numButton[i].value;
+        //         text.innerText = math[2];
+        //     }
+        //     });
+        // }
+
+    // 숫자버튼 활성화 (forEach문)
+    numButton.forEach(function(numButton){
+        numButton.addEventListener("click",function(){
+            if(!isRun){ // 첫번째 수
+                math[0] += numButton.value;
+                text.innerText = math[0];
+            }else{ // 두번째 수
+                math[2] += numButton.value;
+                text.innerText = math[2];
+            }
+        });
+    });
+
+    // 사칙 연산 활성화 (forEach문)
+    sing.forEach(function(sing){
+        sing.addEventListener("click",function(){
+            math[1] = sing.value;
+            text.innerText = math[1];
+            isRun = true;
+        });
+    });
+
+
+        // for (let j = 0;j<sing.length;j++){ (for문)
+        //     sing[j].addEventListener("click",function(){
+        //         math[1] = sing[j].value;
+        //         text.innerText = math[1];
+        //         isRun = true;
+        //     })
+        // }
+       
+        // 정답
+        document.querySelector(".result").addEventListener("click",function(){
+            answer = eval(Number(math[0]) + math[1] + Number(math[2]));
+            text.innerText = answer;
+            
+            // 다시
+            math = ["", "", ""];
+            math[0] = answer;
+            !isRun; 
+        });
+
+        // 초기화
+        document.querySelector("input[value='re']").addEventListener("click", function () {
+            math = ["", "", ""];
+            text.innerText = "0";
+            !isRun;
+        });
+
+    </script>
+</body>
+
+</html>
