@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="bargain.css">
+        <script>
+            function showPrice(){
+            var originPrice = document.querySelector('#oPrice').value; //원래 가격
+            var rate = document.querySelector('#rate').value; // 할인율
+            var savedPrice = originPrice * (rate/100); // 할인금액
+            var resultPrice = originPrice - savedPrice; // 원래가격에서 할인 금액을 뺀 최종
+    
+            document.querySelector('#showResult').innerHTML = "상품의 원래 금액은" + originPrice +
+            "원이고, 할인율은 "+ rate +"%입니다." + savedPrice + "원을 절약한 " + resultPrice +
+            "원에 살 수 있습니다.";
+        }
+        </script>
+    </head>
+    <body>
+        <div id="cibtebts">
+            <img src="sale.png">
+            <ul>
+                <li>
+                    <label for="oPrice">원래 가격</label>
+                     <input type="text" id="oPrice">원
+                </li>
+                <li>
+                    <label for="rate">할인율</label>
+                     <input type="text" id="rate">%
+                </li>
+                <li>
+                    <button onclick="showPrice()">할인 가격 계산하기</button>
+                </li>
+            </ul>
+            <div id="showResult"></div>
+        </div>
+    </body>
+
+</html>
